@@ -23,4 +23,13 @@ class Chip {
   void processOutput() {
     
   }
+  
+  /*
+    How the chip is to be displayed
+    ----O| |
+         | |O-----
+    ----O| | 
+  */
+  void display() { 
+  }
 }

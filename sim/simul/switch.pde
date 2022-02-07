@@ -4,6 +4,7 @@ enum PinType {
 };
 
 class Pin {
+  PVector position;
   /*
     The type of Pin.
     ChipInput, ChipOutput are two types of pins for chips.
@@ -30,12 +31,14 @@ class Pin {
   Pin parentPin;
   ArrayList<Pin> childPins;
   
-  Pin() {
+  Pin(float _x, float _y) {
     state = 0;
     pType = null;
     parentPin = null;
     chip = null;
     childPins = new ArrayList<Pin>();
+    
+    position = new PVector(_x, _y);
   }
   
   /*
@@ -76,5 +79,13 @@ class Pin {
       this.childPins.add(otherPin);
       otherPin.parentPin = this;
     }
+  }
+  
+  /*
+    How the Pin would be displayed
+  */
+  void display() {
+    fill(255);
+    ellipse(position.x, position.y, 24, 24);
   }
 }

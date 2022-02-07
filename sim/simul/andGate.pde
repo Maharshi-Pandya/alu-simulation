@@ -6,7 +6,7 @@ class AndChip extends Chip {
     inputPins = new Pin[2];
     // set inputPins
     for(int i=0; i<inputPins.length; i++) {
-      inputPins[i] = new Pin();
+      inputPins[i] = new Pin(width/2, height/2 + i*10);
       inputPins[i].pType = PinType.ChipInput;
       inputPins[i].chip = this;
     }
@@ -14,7 +14,7 @@ class AndChip extends Chip {
     outputPins = new Pin[1];
     // set outputPins
     for(int i=0; i<outputPins.length; i++) {
-      outputPins[i] = new Pin();
+      outputPins[i] = new Pin(width/2 + i*10, height/2);
       outputPins[i].pType = PinType.ChipOutput;
       outputPins[i].chip = this;
     }

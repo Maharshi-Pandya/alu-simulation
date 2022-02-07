@@ -19,14 +19,14 @@ class BreadBoard {
   /*
     Create a new global input Pin and output Pin
   */
-  Pin createGlobalInputPin() {
-    Pin inp = new Pin();
+  Pin createGlobalInputPin(float _x, float _y) {
+    Pin inp = new Pin(_x, _y);
     inputPins.add(inp);
     return getInputPinNum(inputPins.size());
   }
   
-  Pin createGlobalOutputPin() {
-    Pin out = new Pin();
+  Pin createGlobalOutputPin(float _x, float _y) {
+    Pin out = new Pin(_x, _y);
     outputPins.add(out);
     return getOutputPinNum(outputPins.size());
   }

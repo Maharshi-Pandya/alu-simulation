@@ -5,14 +5,14 @@ class NotChip extends Chip {
     
     inputPins = new Pin[1];
     for(int i=0; i<inputPins.length; i++) {
-      inputPins[i] = new Pin();
+      inputPins[i] = new Pin(width/2 + 30, height/2);
       inputPins[i].pType = PinType.ChipInput;
       inputPins[i].chip = this;
     }
     
     outputPins = new Pin[1];
     for(int i=0; i<outputPins.length; i++) {
-      outputPins[i] = new Pin();
+      outputPins[i] = new Pin(width/2 + 60, height/2);
       outputPins[i].pType = PinType.ChipOutput;
       outputPins[i].chip = this;
     }
