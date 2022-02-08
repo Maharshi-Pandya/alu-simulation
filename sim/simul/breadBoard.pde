@@ -9,11 +9,14 @@ class BreadBoard {
     The chips which are currently on the bread board
   */
   ArrayList<Chip> chips;
+  
+  ArrayList<Wire> wires;
 
   BreadBoard() {
     inputPins = new ArrayList<Pin>();
     outputPins = new ArrayList<Pin>();
     chips = new ArrayList<Chip>();
+    wires = new ArrayList<Wire>();
   }
 
   /*
@@ -34,14 +37,14 @@ class BreadBoard {
   /*
     Add a Chip to the board
   */
-  Chip addChip(String chipName) {
+  Chip addChip(String chipName, float _x, float _y) {
     Chip chip = null;
     if("AND".equals(chipName)) {
-      chip = new AndChip();
+      chip = new AndChip(_x, _y);
       chips.add(chip);
     }
     else if("NOT".equals(chipName)) {
-      chip = new NotChip();
+      chip = new NotChip(_x, _y);
       chips.add(chip);
     }
     
@@ -58,6 +61,7 @@ class BreadBoard {
     wire.setStart(pA);
     wire.setEnd(pB);
     wire.connect();
+    wires.add(wire);
   }
   
   /*
@@ -93,6 +97,24 @@ class BreadBoard {
       for(int i=0; i<signals.length; i++) {
         inputPins.get(i).recieveSignal(signals[i]);
       }
+    }
+  }
+  
+  /*
+    Display everything in order
+  */
+  void displayState() {
+    for(Pin inpPin: inputPins) {
+      inpPin.display();
+    }
+    for(Pin outPin: outputPins) {
+      outPin.display();
+    }
+    for(Wire w: wires) {
+      w.display();
+    }
+    for(Chip c: chips) {
+      c.display();
     }
   }
 }

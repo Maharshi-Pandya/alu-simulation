@@ -30,7 +30,12 @@ class Wire {
     How the wire will be displayed
   */
   void display() {
-    stroke(255);
+    strokeWeight(3);
+    if(start.state == 1) {
+      stroke(255, 255, 0);
+    } else {
+      stroke(255);
+    }
     line(start.position.x, start.position.y, end.position.x, end.position.y);
   }
 }

@@ -1,3 +1,5 @@
+float pinRadius = 20;
+
 enum PinType {
   ChipInput,
   ChipOutput
@@ -30,6 +32,8 @@ class Pin {
   */
   Pin parentPin;
   ArrayList<Pin> childPins;
+  
+  int pinDisplayColor;
   
   Pin(float _x, float _y) {
     state = 0;
@@ -85,7 +89,11 @@ class Pin {
     How the Pin would be displayed
   */
   void display() {
-    fill(255);
+    if (state == 1) {
+      fill(255, 255, 0);
+    } else {
+      fill(255);
+    }
     ellipse(position.x, position.y, 24, 24);
   }
 }
