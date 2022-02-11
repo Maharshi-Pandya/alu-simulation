@@ -11,12 +11,15 @@ class BreadBoard {
   ArrayList<Chip> chips;
   
   ArrayList<Wire> wires;
+  
+  ArrayList<Integer> boardSignals;
 
   BreadBoard() {
     inputPins = new ArrayList<Pin>();
     outputPins = new ArrayList<Pin>();
     chips = new ArrayList<Chip>();
     wires = new ArrayList<Wire>();
+    boardSignals = new ArrayList<Integer>();
   }
 
   /*
@@ -92,11 +95,38 @@ class BreadBoard {
     This function recieve signals at the input Pins as an array of ints,
     and thus executes the circuit
   */
-  void recieveSignals(int[] signals) {  
-    if(signals.length == inputPins.size()) {
-      for(int i=0; i<signals.length; i++) {
-        inputPins.get(i).recieveSignal(signals[i]);
+  void recieveSignals(ArrayList<Integer> signals) {
+    //boardSignals.clear();
+    if(signals.size() == inputPins.size()) {
+      
+      // set boardSignals
+      if(boardSignals.size() == signals.size()) {
+        for(int i=0; i<signals.size(); i++) {
+          boardSignals.set(i, signals.get(i));
+        }
       }
+      else {
+        for(int i=0; i<signals.size(); i++) {
+          boardSignals.add(signals.get(i));
+        }
+      }
+      
+      for(int i=0; i<boardSignals.size(); i++) {
+        inputPins.get(i).recieveSignal(boardSignals.get(i));
+      }
+    }
+  }
+  
+  void updateState(float x, float y) {
+    for(int i=0; i<inputPins.size(); i++) {
+      
+        if(((x >= inputPins.get(i).position.x - pinRadius) && (x <= inputPins.get(i).position.x + pinRadius))
+        && ((y >= inputPins.get(i).position.y - pinRadius) && (y <= inputPins.get(i).position.y + pinRadius))) {
+          println("Clicked..");
+          int signal = inputPins.get(i).toggleState();
+          inputPins.get(i).recieveSignal(signal);
+        }
+      
     }
   }
   

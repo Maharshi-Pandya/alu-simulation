@@ -24,14 +24,16 @@ void setup() {
   notChip = board.addChip("NOT", width/2 + 300, height/2);
 
   // connect wires
-  board.connectWireBetween(inpA, andChip.inputPins[0]);
-  board.connectWireBetween(inpB, andChip.inputPins[1]);
+  board.connectWireBetween(inpA, andChip.inputPins.get(0));
+  board.connectWireBetween(inpB, andChip.inputPins.get(1));
 
-  board.connectWireBetween(andChip.outputPins[0], notChip.inputPins[0]);
-  board.connectWireBetween(notChip.outputPins[0], outA);
+  board.connectWireBetween(andChip.outputPins.get(0), notChip.inputPins.get(0));
+  board.connectWireBetween(notChip.outputPins.get(0), outA);
 
   // send signals
-  int[] signals = {1, 0};
+  ArrayList<Integer> signals = new ArrayList<Integer> ();
+  signals.add(1);
+  signals.add(0);
   board.recieveSignals(signals);
 
   // get outputs
@@ -41,9 +43,17 @@ void setup() {
   }
 }
 
+//void mouseReleased() {
+//  board.updateState(mouseX, mouseY);
+//}
+
 // is called per frame
 void draw() {
-  background(0x2A0944);
+  background(0xCCD1E4);
 
+  if(mousePressed) {
+    board.updateState(mouseX, mouseY);
+  }
+  
   board.displayState();
 }

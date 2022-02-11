@@ -85,15 +85,26 @@ class Pin {
     }
   }
   
+  void updatePosition(float x, float y) {
+    position.x = x;
+    position.y = y;
+  }
+  
+  int toggleState() {
+    int signal = 1 - state;
+    return signal;
+  }
+  
   /*
     How the Pin would be displayed
   */
   void display() {
+    stroke(255, 255, 255);
     if (state == 1) {
-      fill(255, 255, 0);
+      fill(255, 193, 7);
     } else {
-      fill(255);
+      fill(15, 14, 14);
     }
-    ellipse(position.x, position.y, 24, 24);
+    ellipse(position.x, position.y, pinRadius, pinRadius);
   }
 }
