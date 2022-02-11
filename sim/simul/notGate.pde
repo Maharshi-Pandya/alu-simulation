@@ -30,7 +30,7 @@ class NotChip extends Chip {
   // display
   void display() {
     noStroke();
-    fill(0, 200, 255);
+    fill(notColor);
     rect(chipPos.x, chipPos.y, chipWidthHeight.x, chipWidthHeight.y, chipRoundness);
     for(int i=0; i<inputPins.size(); i++) {
       inputPins.get(i).display();

@@ -33,7 +33,7 @@ class Pin {
   Pin parentPin;
   ArrayList<Pin> childPins;
   
-  int pinDisplayColor;
+  color pinDisplayColor;
   
   Pin(float _x, float _y) {
     state = 0;
@@ -43,6 +43,7 @@ class Pin {
     childPins = new ArrayList<Pin>();
     
     position = new PVector(_x, _y);
+    pinDisplayColor = pinOffColor;
   }
   
   /*
@@ -95,16 +96,21 @@ class Pin {
     return signal;
   }
   
+  void setDisplayColor(color c) {
+    pinDisplayColor = c;
+  }
+  
   /*
     How the Pin would be displayed
   */
   void display() {
     stroke(255, 255, 255);
     if (state == 1) {
-      fill(255, 193, 7);
+      setDisplayColor(pinOnColor);
     } else {
-      fill(15, 14, 14);
+      setDisplayColor(pinOffColor);
     }
+    fill(pinDisplayColor);
     ellipse(position.x, position.y, pinRadius, pinRadius);
   }
 }

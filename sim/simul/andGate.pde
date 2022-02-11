@@ -35,7 +35,7 @@ class AndChip extends Chip {
   // display
   void display() {
     noStroke();
-    fill(47, 58, 143);
+    fill(andColor);
     rect(chipPos.x, chipPos.y, chipWidthHeight.x, chipWidthHeight.y, chipRoundness);
     for(int i=0; i<inputPins.size(); i++) {
       inputPins.get(i).display();

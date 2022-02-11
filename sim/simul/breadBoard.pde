@@ -1,3 +1,13 @@
+/*
+  All the display colors
+*/
+color bgColor = color(204, 209, 228);
+color andColor = color(47, 58, 143);
+color notColor = color(0, 200, 255);
+color pinOffColor = color(15, 14, 14);
+color pinOnColor = color(255, 193, 7);
+
+
 class BreadBoard {
   /*
     Bread board is our playground.
@@ -13,6 +23,17 @@ class BreadBoard {
   ArrayList<Wire> wires;
   
   ArrayList<Integer> boardSignals;
+  
+  /*
+    Modes of breadBoard
+    inputSignalMode : We can toggle the input switches on/off
+    wireMode : We can connect wires from one input switch to other switch
+    normalMode : We can move the logic gates around
+  */
+  boolean inputSignalMode;
+  boolean wireMode;
+  boolean normalMode;
+  
 
   BreadBoard() {
     inputPins = new ArrayList<Pin>();
@@ -20,6 +41,10 @@ class BreadBoard {
     chips = new ArrayList<Chip>();
     wires = new ArrayList<Wire>();
     boardSignals = new ArrayList<Integer>();
+    
+    inputSignalMode = false;
+    wireMode = false;
+    normalMode = false;
   }
 
   /*
@@ -118,15 +143,15 @@ class BreadBoard {
   }
   
   void updateState(float x, float y) {
-    for(int i=0; i<inputPins.size(); i++) {
+    if(inputSignalMode) {
+      for(int i=0; i<inputPins.size(); i++) {
       
         if(((x >= inputPins.get(i).position.x - pinRadius) && (x <= inputPins.get(i).position.x + pinRadius))
         && ((y >= inputPins.get(i).position.y - pinRadius) && (y <= inputPins.get(i).position.y + pinRadius))) {
-          println("Clicked..");
           int signal = inputPins.get(i).toggleState();
           inputPins.get(i).recieveSignal(signal);
         }
-      
+      }
     }
   }
   

@@ -1,10 +1,4 @@
 BreadBoard board;
-Pin inpA;
-Pin inpB;
-
-Pin outA;
-
-Chip andChip, notChip;
 
 // is called before the simulation start
 void setup() {
@@ -14,14 +8,14 @@ void setup() {
   board = new BreadBoard();
 
   // create input and output pins
-  inpA = board.createGlobalInputPin(20, height/4);
-  inpB = board.createGlobalInputPin(20, 3*height/4);
+  Pin inpA = board.createGlobalInputPin(20, height/4);
+  Pin inpB = board.createGlobalInputPin(20, 3*height/4);
 
-  outA = board.createGlobalOutputPin(width - 20, height/2);
+  Pin outA = board.createGlobalOutputPin(width - 20, height/2);
 
   // add chip(s)
-  andChip = board.addChip("AND", width/2, height/2);
-  notChip = board.addChip("NOT", width/2 + 300, height/2);
+  Chip andChip = board.addChip("AND", width/2, height/2);
+  Chip notChip = board.addChip("NOT", width/2 + 300, height/2);
 
   // connect wires
   board.connectWireBetween(inpA, andChip.inputPins.get(0));
@@ -43,17 +37,19 @@ void setup() {
   }
 }
 
-//void mouseReleased() {
-//  board.updateState(mouseX, mouseY);
-//}
+void mouseReleased() {
+  board.updateState(mouseX, mouseY);
+}
+
+void keyPressed() {
+  // Press i or I to enter the input signal mode, where we can toggle the input switches on or off
+  if(key == 'i' || key == 'I') { 
+    board.inputSignalMode = !board.inputSignalMode;
+  }
+}
 
 // is called per frame
 void draw() {
-  background(0xCCD1E4);
-
-  if(mousePressed) {
-    board.updateState(mouseX, mouseY);
-  }
-  
+  background(bgColor);
   board.displayState();
 }

@@ -32,9 +32,9 @@ class Wire {
   void display() {
     strokeWeight(3);
     if(start.state == 1) {
-      stroke(255, 193, 7);
+      stroke(pinOnColor);
     } else {
-      stroke(15, 14, 14);
+      stroke(pinOffColor);
     }
     line(start.position.x, start.position.y, end.position.x, end.position.y);
   }
