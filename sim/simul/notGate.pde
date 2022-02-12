@@ -2,6 +2,8 @@ class NotChip extends Chip {
   NotChip(float _x, float _y) {
     super(_x, _y);
     chipName = "NOT";
+    chipColor = notColor;
+    
     numInputPins = 1;
     numOutputPins = 1;
     
@@ -25,18 +27,5 @@ class NotChip extends Chip {
     println("In NOT gate...");
     int signal = 1 - inputPins.get(0).state;
     outputPins.get(0).recieveSignal(signal);
-  }
-  
-  // display
-  void display() {
-    noStroke();
-    fill(notColor);
-    rect(chipPos.x, chipPos.y, chipWidthHeight.x, chipWidthHeight.y, chipRoundness);
-    for(int i=0; i<inputPins.size(); i++) {
-      inputPins.get(i).display();
-    }
-    for(int i=0; i<outputPins.size(); i++) {
-      outputPins.get(i).display();
-    }
   }
 }

@@ -37,19 +37,58 @@ void setup() {
   }
 }
 
+void mousePressed() {
+  if(board.normalMode) {
+    board.checkPressed();
+  }
+}
+
+void mouseDragged() {
+  if(board.normalMode) {
+    Chip tempChip = null;
+    for(Chip chip : board.chips) {
+      if(chip.chipLocked) {
+        tempChip = chip;
+        break;
+      }
+    }
+    if(tempChip != null) {
+      tempChip.updatePosition(mouseX, mouseY);
+    }
+  }
+}
+
 void mouseReleased() {
-  board.updateState(mouseX, mouseY);
+  if(board.inputSignalMode) {
+    board.updateInputSignalState(mouseX, mouseY);
+  }
+  if(board.normalMode) {
+    for(Chip chip : board.chips) {
+      chip.releaseEvent();
+    }
+  }
 }
 
 void keyPressed() {
   // Press i or I to enter the input signal mode, where we can toggle the input switches on or off
   if(key == 'i' || key == 'I') { 
     board.inputSignalMode = !board.inputSignalMode;
+    board.wireMode = false;
+    board.normalMode = false;
+  }
+  else if(key == 'n' || key == 'N') {
+    board.inputSignalMode = false;
+    board.wireMode = false;
+    board.normalMode = !board.normalMode;
   }
 }
 
 // is called per frame
 void draw() {
   background(bgColor);
+  
+  if(board.normalMode) {
+    board.checkOver(mouseX, mouseY);
+  }
   board.displayState();
 }

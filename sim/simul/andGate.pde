@@ -2,6 +2,7 @@ class AndChip extends Chip {
   AndChip(float _x, float _y) {
     super(_x, _y);
     chipName = "AND";
+    chipColor = andColor;
     
     // set the number of input and output pins required
     numInputPins = 2;
@@ -30,18 +31,5 @@ class AndChip extends Chip {
     println("In AND gate...");
     int signal = inputPins.get(0).state & inputPins.get(1).state;
     outputPins.get(0).recieveSignal(signal);
-  }
-  
-  // display
-  void display() {
-    noStroke();
-    fill(andColor);
-    rect(chipPos.x, chipPos.y, chipWidthHeight.x, chipWidthHeight.y, chipRoundness);
-    for(int i=0; i<inputPins.size(); i++) {
-      inputPins.get(i).display();
-    }
-    for(int i=0; i<outputPins.size(); i++) {
-      outputPins.get(i).display();
-    }
   }
 }
