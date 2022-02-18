@@ -1,3 +1,8 @@
 # ALU Simulation
 
-A simple and concise simulation of how ALU works in a computer using logic gates
+- An ALU (Arithmetic and Logic Unit) simulation in progress...
+- Made with [Processing](https://processing.org/)
+
+## How it looks?
+
+![ALU simulation](./imgs/ALU.png)
