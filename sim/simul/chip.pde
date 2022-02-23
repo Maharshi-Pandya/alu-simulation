@@ -75,11 +75,21 @@ class Chip {
   void updatePosition(float x, float y) {
     chipPos.x = x;
     chipPos.y = y;
-    for (int i=0; i<inputPins.size(); i++) {
-      inputPins.get(i).updatePosition(chipPos.x, chipPos.y + i*(2 * pinRadius + gapBetweenPins));
+    
+    if(inputPins.size() == 1) {
+      inputPins.get(0).updatePosition(chipPos.x, chipPos.y + (chipWidthHeight.y/2));
+    } else {
+      for (int i=0; i<inputPins.size(); i++) {
+        inputPins.get(i).updatePosition(chipPos.x, chipPos.y + i*(2 * pinRadius + gapBetweenPins));
+      }
     }
-    for (int i=0; i<outputPins.size(); i++) {
-      outputPins.get(i).updatePosition(chipPos.x + chipWidthHeight.x, chipPos.y + i*(2 * pinRadius + gapBetweenPins));
+    
+    if(outputPins.size() == 1) {
+      outputPins.get(0).updatePosition(chipPos.x + chipWidthHeight.x, chipPos.y + (chipWidthHeight.y/2));
+    } else {
+      for (int i=0; i<outputPins.size(); i++) {
+        outputPins.get(i).updatePosition(chipPos.x + chipWidthHeight.x, chipPos.y + i*(2 * pinRadius + gapBetweenPins));
+      }
     }
   }
 

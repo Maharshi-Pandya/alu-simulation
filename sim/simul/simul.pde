@@ -81,6 +81,11 @@ void keyPressed() {
     board.wireMode = false;
     board.normalMode = !board.normalMode;
   }
+  else if(key == 'w' || key == 'W') {
+    board.inputSignalMode = false;
+    board.wireMode = !board.wireMode;
+    board.normalMode = false;
+  }
 }
 
 // is called per frame
